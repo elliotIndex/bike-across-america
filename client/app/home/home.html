@@ -1,13 +1,12 @@
 <div id='home'>
   <h1>Home</h1>
-
-  <div>Total Miles Ridden: {{ user.miles }}</div>
+  <div>Total Miles Ridden: {{ user.milesRidden }}</div>
   <br>
-
-  <div>Add Ride {{ user.milesRidden }}</div>
+  <div>Add Ride</div>
   <br>
   <form name="enterMilesForm" ng-submit='addMiles()'>
-    <input type="number" ng-model="data.addedMiles" min="0" max="500">Miles
+    <input type="number" ng-model="data.addedMiles" min="0" max="500">
+    Miles
     <button>Add</button>
   </form>
   <br>

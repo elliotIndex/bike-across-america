@@ -72,6 +72,7 @@ angular.module('bikeAcrossAmerica.services', [])
     signin: signin,
     signup: signup,
     isAuth: isAuth,
-    signout: signout
+    signout: signout,
+    getUser: getUser
   };
 });

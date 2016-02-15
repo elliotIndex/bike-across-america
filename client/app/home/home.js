@@ -5,6 +5,7 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
 
   Auth.getUser()
   .then(function (user) {
+    console.log('User: ', user);
     $scope.user = user;
   });
 
