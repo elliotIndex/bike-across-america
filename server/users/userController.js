@@ -33,7 +33,8 @@ module.exports = {
           if (foundUser) {
             res.json(foundUser);
           } else {
-            res.send(401);
+            res.sendStatus(401);
+            // res.send(401);
           }
         })
         .fail(function (error) {

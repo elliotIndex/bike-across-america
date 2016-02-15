@@ -2,28 +2,22 @@ var Q = require('q');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var SALT_WORK_FACTOR = 10;
-
+var AMERICA_WIDTH = 2680; // miles
 
 var UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
   salt: String,
 
   firstName: { type: String, default: "Lance" },
   lastName: { type: String, default: "Armstrong" },
-  milesRidden: { type: Number, default: 0 },
+  totalMiles: { type: Number, default: 0 },
+  americaCrossings: { type: Number, default: 0 },
   weeklyMilageGoal: { type: Number, default: 50 },
 });
 
 UserSchema.methods.addMiles = function (miles) {
-  this.milesRidden += miles;
+  this.totalMiles += miles;
   this.save();
   return this;
 };
@@ -44,6 +38,9 @@ UserSchema.methods.comparePasswords = function (candidatePassword) {
 UserSchema.pre('save', function (next) {
   var user = this;
 
+  // update number of crossings
+  user.americaCrossings = Math.floor(user.totalMiles / AMERICA_WIDTH);
+  
   // only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) {
     return next();
