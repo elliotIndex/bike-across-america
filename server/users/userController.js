@@ -10,7 +10,7 @@ module.exports = {
   // addMiles: function (req, res, next) {
   //   helpers.decode(req, res, next)
   // }
-  getUser: function (user) {
+  getUser: function (req, res, next) {
     var token = req.headers['x-access-token'];
     if (!token) {
       next(new Error('No token'));
@@ -19,7 +19,7 @@ module.exports = {
       findUser({username: user.username})
         .then(function (foundUser) {
           if (foundUser) {
-            res.body(foundUser);
+            res.json(foundUser);
             res.send(200);
           } else {
             res.send(401);
