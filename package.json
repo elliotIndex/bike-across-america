@@ -19,7 +19,7 @@
   "devDependencies": {
     "browser-sync": "^1.5.7",
     "clone-stats": "0.0.1",
-    "mocha": "^2.3.4",
+    "mocha": "^2.3.4"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
