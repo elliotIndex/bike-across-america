@@ -1,0 +1,34 @@
+{
+  "name": "bike-across-america",
+  "version": "0.0.0",
+  "description": "Keep track of long term biking goals",
+  "author": "Elliot Plant",
+
+  "scripts": {
+    "start": "gulp",
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elliotaplant/bike-across-america.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elliotaplant/bike-across-america/issues"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "browser-sync": "^1.5.7",
+    "clone-stats": "0.0.1",
+    "mocha": "^2.3.4",
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5",
+    "jwt-simple": "^0.2.0",
+    "mongoose": "^4.1.0",
+    "morgan": "^1.1.1",
+    "q": "^1.4.1",
+    "request": "^2.36.0"
+  }
+}
