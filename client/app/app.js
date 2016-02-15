@@ -22,7 +22,7 @@ angular.module('bikeAcrossAmerica', [
 .factory('AttachTokens', function ($window) {
   var attach = {
     request: function (object) {
-      var jwt = $window.localStorage.getItem('com.shortly');
+      var jwt = $window.localStorage.getItem('com.bikeAcrossAmerica');
       if (jwt) {
         object.headers['x-access-token'] = jwt;
       }

@@ -1,4 +1,4 @@
-angular.module('shortly.services', [])
+angular.module('bikeAcrossAmerica.services', [])
 
 // .factory('Links', function ($http) {
 //
@@ -50,11 +50,11 @@ angular.module('shortly.services', [])
   };
 
   var isAuth = function () {
-    return !!$window.localStorage.getItem('com.shortly');
+    return !!$window.localStorage.getItem('com.bikeAcrossAmerica');
   };
 
   var signout = function () {
-    $window.localStorage.removeItem('com.shortly');
+    $window.localStorage.removeItem('com.bikeAcrossAmerica');
     $location.path('/signin');
   };
 

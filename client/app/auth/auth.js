@@ -1,4 +1,4 @@
-angular.module('shortly.auth', [])
+angular.module('bikeAcrossAmerica.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
@@ -6,7 +6,7 @@ angular.module('shortly.auth', [])
   $scope.signin = function () {
     Auth.signin($scope.user)
       .then(function (token) {
-        $window.localStorage.setItem('com.shortly', token);
+        $window.localStorage.setItem('com.bikeAcrossAmerica', token);
         $location.path('/links');
       })
       .catch(function (error) {
@@ -17,7 +17,7 @@ angular.module('shortly.auth', [])
   $scope.signup = function () {
     Auth.signup($scope.user)
       .then(function (token) {
-        $window.localStorage.setItem('com.shortly', token);
+        $window.localStorage.setItem('com.bikeAcrossAmerica', token);
         $location.path('/links');
       })
       .catch(function (error) {
