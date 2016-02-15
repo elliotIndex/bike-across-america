@@ -1,30 +1,30 @@
 angular.module('bikeAcrossAmerica.services', [])
 
-// .factory('Links', function ($http) {
-//
-//   var getAll = function () {
-//     return $http({
-//       method: 'GET',
-//       url: '/api/links'
-//     })
-//     .then(function (resp) {
-//       return resp.data;
-//     });
-//   };
-//
-//   var addOne = function (link) {
-//     return $http({
-//       method: 'POST',
-//       url: '/api/links',
-//       data: link
-//     });
-//   };
-//
-//   return {
-//     getAll: getAll,
-//     addOne: addOne
-//   };
-//   })
+.factory('Home', function ($http) {
+
+  var getMiles = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/miles'
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  var addMiles = function (miles) {
+    return $http({
+      method: 'POST',
+      url: '/api/miles',
+      data: miles
+    });
+  };
+
+  return {
+    getMiles: getMiles,
+    addMiles: addMiles
+  };
+})
 .factory('Auth', function ($http, $location, $window) {
 
   var signin = function (user) {

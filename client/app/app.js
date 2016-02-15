@@ -1,6 +1,7 @@
 angular.module('bikeAcrossAmerica', [
   'bikeAcrossAmerica.services',
   'bikeAcrossAmerica.auth',
+  'bikeAcrossAmerica.home',
   'ngRoute'
 ])
 .config(function ($routeProvider, $httpProvider) {
@@ -13,8 +14,12 @@ angular.module('bikeAcrossAmerica', [
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
+    .when('/home', {
+      templateUrl: 'app/home/home.html',
+      controller: 'HomeController'
+    })
     .otherwise({
-      redirectTo: 'app/auth/signup.html'
+      redirectTo: '/home'
     })
 
     $httpProvider.interceptors.push('AttachTokens');
