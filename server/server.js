@@ -1,9 +1,9 @@
 var express = require('express');
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 var app = express();
 
-// mongoose.connect('mongodb://localhost/bikeAcrossAmerica');
+mongoose.connect('mongodb://localhost/bikeAcrossAmerica');
 
 // // configure our server with all the middleware and routing
 // require('./config/middleware.js')(app, express);
