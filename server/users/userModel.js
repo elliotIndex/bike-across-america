@@ -10,12 +10,18 @@ var UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-
   password: {
     type: String,
     required: true
   },
-  salt: String
+  salt: String,
+
+  firstName: { type: String, default: "Lance" },
+  lastName: { type: String, default: "Armstrong" },
+  milesRidden: { type: Number, default: 0 },
+  weeklyMilageGoal: { type: Number, default: 50 },
+
+
 });
 
 UserSchema.methods.comparePasswords = function (candidatePassword) {
