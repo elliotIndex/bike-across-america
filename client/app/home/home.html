@@ -1,5 +1,11 @@
 <div id='home'>
   <h1>Home</h1>
-  <div>Miles Ridden {{ miles }}</div>
-  <button ng-click="signout()">Signout<div>
+  <div>Add Ride {{ miles }}</div>
+  <br>
+  <form name="enterMilesForm" ng-submit='addMiles()'>
+    <input type="number" ng-model="data.addedMiles" min="0" max="500">Miles
+    <button>Add</button>
+  </form>
+  <br>
+  <button ng-click="signout()">Signout</button>
 </div>
