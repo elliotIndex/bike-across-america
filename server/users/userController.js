@@ -1,5 +1,5 @@
 var User = require('./userModel.js');
-var  Q = require('q'); // these two may not need var keyword
+var  Q = require('q'); 
 var  jwt = require('jwt-simple');
 
 // Promisify a few mongoose methods with the `q` promise library
@@ -20,7 +20,6 @@ module.exports = {
         .then(function (foundUser) {
           if (foundUser) {
             res.json(foundUser);
-            res.send(200);
           } else {
             res.send(401);
           }
