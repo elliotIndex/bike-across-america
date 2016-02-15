@@ -20,9 +20,13 @@ var UserSchema = new mongoose.Schema({
   lastName: { type: String, default: "Armstrong" },
   milesRidden: { type: Number, default: 0 },
   weeklyMilageGoal: { type: Number, default: 50 },
-
-
 });
+
+UserSchema.methods.addMiles = function (miles) {
+  this.milesRidden += miles;
+  this.save();
+  return this;
+};
 
 UserSchema.methods.comparePasswords = function (candidatePassword) {
   var savedPassword = this.password;

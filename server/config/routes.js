@@ -13,7 +13,7 @@ module.exports = function (app, express) {
   // authentication middleware used to decode token and made available on the request
   // app.use('/api/links', helpers.decode);
   // app.get('/api/links/', linksController.allLinks);
-  // app.post('/api/links/', linksController.newLink);
+  app.post('/api/users/miles', userController.addMiles);
   app.get('/api/users/getUser', userController.getUser);
   app.get('/', testController.testFunc);
   // If a request is sent somewhere other than the routes above,

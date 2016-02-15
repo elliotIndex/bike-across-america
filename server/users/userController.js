@@ -1,5 +1,5 @@
 var User = require('./userModel.js');
-var  Q = require('q'); 
+var  Q = require('q');
 var  jwt = require('jwt-simple');
 
 // Promisify a few mongoose methods with the `q` promise library
@@ -7,9 +7,21 @@ var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
 
 module.exports = {
-  // addMiles: function (req, res, next) {
-  //   helpers.decode(req, res, next)
-  // }
+
+  addMiles: function (req, res, next) {
+    findUser(req.body.user)
+      .then(function (user) {
+        if (!user) {
+          next(new Error('User does not exist'));
+        } else {
+          return user.addMiles(req.body.miles);
+        }
+      })
+      .fail(function (error) {
+        next(error);
+      });
+  },
+
   getUser: function (req, res, next) {
     var token = req.headers['x-access-token'];
     if (!token) {
