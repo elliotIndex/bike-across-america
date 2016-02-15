@@ -7,6 +7,10 @@ var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
 
 module.exports = {
+  // addMiles: function (req, res, next) {
+  //   helpers.decode(req, res, next)
+  // }
+
   signin: function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;

@@ -1,12 +1,13 @@
 // var linksController = require('../links/linkController.js');
-// var userController = require('../users/userController.js');
+var userController = require('../users/userController.js');
 var testController = require('../test/testController.js');
 var helpers = require('./helpers.js'); // our custom middleware
 
 module.exports = function (app, express) {
 
-  // app.post('/api/users/signin', userController.signin);
-  // app.post('/api/users/signup', userController.signup);
+  app.post('/api/users/signin', userController.signin);
+  app.post('/api/users/signup', userController.signup);
+  // app.put('/api/users/milage', userController.addMiles);
   // app.get('/api/users/signedin', userController.checkAuth);
 
   // authentication middleware used to decode token and made available on the request
