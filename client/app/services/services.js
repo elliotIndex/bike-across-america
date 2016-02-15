@@ -27,6 +27,15 @@ angular.module('bikeAcrossAmerica.services', [])
 })
 .factory('Auth', function ($http, $location, $window) {
 
+  var getUser = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/users/getUser'
+    })
+    .then(function (resp) {
+      return resp.data; // check to see what resp.data is
+    });
+  }
   var signin = function (user) {
     return $http({
       method: 'POST',
