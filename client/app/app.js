@@ -16,7 +16,8 @@ angular.module('bikeAcrossAmerica', [
     })
     .when('/home', {
       templateUrl: 'app/home/home.html',
-      controller: 'HomeController'
+      controller: 'HomeController',
+      authenticate: true
     })
     .otherwise({
       redirectTo: '/home'
