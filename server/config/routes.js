@@ -1,6 +1,6 @@
 // var linksController = require('../links/linkController.js');
 // var userController = require('../users/userController.js');
-// var helpers = require('./helpers.js'); // our custom middleware
+var helpers = require('./helpers.js'); // our custom middleware
 
 module.exports = function (app, express) {
 
