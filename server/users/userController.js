@@ -19,9 +19,13 @@ module.exports = {
         if (users.length < 2) {
           next(new Error('Rider does not exist'));
         } else {
-          users.addRidingPartner(req.body.newRider)
-          .then(function(users) {
-            res.json(users);
+          users.forEach(function(user) {
+            if (user.username === req.body.user.username) {
+              user.addRidingPartner(req.body.newRider) //users[0] may not always work
+              .then(function(users) {
+                res.json(users);
+              });
+            }
           });
         }
       })
