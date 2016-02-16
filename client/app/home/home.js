@@ -12,6 +12,10 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
     });
   };
 
+  $scope.navToProfile = function () {
+    
+  }
+
   $scope.addMiles = function () {
     Home.addMiles($scope.data.addedMiles, { username: $scope.user.username })
     .then(function(user) {
