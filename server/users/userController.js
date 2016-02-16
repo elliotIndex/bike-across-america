@@ -156,6 +156,13 @@ module.exports = {
             firstName: firstName,
             lastName: lastName,
             weeklyMilageGoal: weeklyMilageGoal
+          })
+          .then(function(user) {
+            return user.addRidingPartner({
+              username: user.username,
+              startMiles: user.totalMiles,
+              milesSince: 0
+            });
           });
         }
       })
