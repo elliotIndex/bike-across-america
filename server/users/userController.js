@@ -7,6 +7,19 @@ var findUser = Q.nbind(User.findOne, User);
 var findUsers = Q.nbind(User.find, User);
 var createUser = Q.nbind(User.create, User);
 
+var applyToUser = function (user, success, next) {
+  // user must be in format { username: "username" }
+  return findUser(user)
+    .then(function (user) {
+      if (!user) {
+        next(new Error('User already exist!'));
+      } else {
+        success(user)
+        return user;
+      }
+    });
+};
+
 module.exports = {
 
   addRidingPartner: function (req, res, next) {
@@ -35,20 +48,27 @@ module.exports = {
   },
 
   addMiles: function (req, res, next) {
-    findUser(req.body.user)
-      .then(function (user) {
-        if (!user) {
-          next(new Error('User does not exist'));
-        } else {
-          user.addMiles(req.body.miles)
-          .then(function(user) {
-            res.json(user);
-          });
-        }
-      })
-      .fail(function (error) {
-        next(error);
-      });
+    applyToUser(req.body.user,
+      function (user) {
+        user.addMiles(req.body.miles)
+      }, next)
+    .then(function(user) {
+      res.json(user);
+    });
+    // findUser(req.body.user)
+    //   .then(function (user) {
+    //     if (!user) {
+    //       next(new Error('User does not exist'));
+    //     } else {
+    //       user.addMiles(req.body.miles)
+    //       .then(function(user) {
+    //         res.json(user);
+    //       });
+    //     }
+    //   })
+    //   .fail(function (error) {
+    //     next(error);
+    //   });
   },
 
   getUser: function (req, res, next) {
