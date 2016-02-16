@@ -17,7 +17,7 @@ var applyToUser = function (user, success, failure, next) {
         if (failure) {
           failure();
         }
-        next(new Error('User already exist!'));
+        next();
       } else {
         success(user)
         return user;
@@ -26,37 +26,17 @@ var applyToUser = function (user, success, failure, next) {
 };
 
 module.exports = {
-  // addRidingPartner: function(req, res, next) {
-  //   applyToUser(req.body.newRider,
-  //     function (partner) {
-  //       applyToUser(user.username,
-  //         function (currentUser) {
-  //
-  //         }, null, next);
-  //     }, null, next);
-  // }
-  addRidingPartner: function (req, res, next) {
-    findUsers({$or: [
-      req.body.user,
-      { username: req.body.newRider }
-    ]})
-      .then(function (users) {
-        if (users.length < 2) {
-          next(new Error('Rider does not exist'));
-        } else {
-          users.forEach(function(user) {
-            if (user.username === req.body.user.username) {
-              user.addRidingPartner(req.body.newRider) //users[0] may not always work
-              .then(function(users) {
-                res.json(users);
-              });
-            }
-          });
-        }
-      })
-      .fail(function (error) {
-        next(error);
-      });
+  addRidingPartner: function(req, res, next) {
+    applyToUser(req.body.newRider,
+      function (partner) {
+        applyToUser(req.body.user.username,
+          function (currentUser) {
+            currentUser.addRidingPartner(partner.username)
+            .then(function (user) {
+              res.json(user);
+            });
+          }, null, next);
+      }, null, next);
   },
 
   addMiles: function (req, res, next) {
@@ -83,21 +63,15 @@ module.exports = {
   },
 
   setUser: function (req, res, next) {
-    findUser(req.body.user)
-      .then(function (user) {
-        if (!user) {
-          next(new Error('User does not exist'));
-        } else {
-          user.updateInfo(req.body.newInfo)
-          .then(function(user) {
-            res.json(user);
-          });
-        }
-      })
-      .fail(function (error) {
-        next(error);
-      });
+    applyToUser(req.body.user,
+      function (user) {
+        user.updateInfo(req.body.newInfo)
+        .then(function(user) {
+          res.json(user);
+        });
+      }, null, next);
   },
+
 
   signin: function (req, res, next) {
     var username = req.body.username;
