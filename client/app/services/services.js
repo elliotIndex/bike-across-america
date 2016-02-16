@@ -20,6 +20,8 @@ angular.module('bikeAcrossAmerica.services', [])
         miles: miles,
         user: user
       }
+    }).then(function (user) {
+      return user;
     });
   };
 

@@ -14,7 +14,10 @@ module.exports = {
         if (!user) {
           next(new Error('User does not exist'));
         } else {
-          return user.addMiles(req.body.miles);
+          user.addMiles(req.body.miles)
+          .then(function(user) {
+            res.json(user);
+          });
         }
       })
       .fail(function (error) {
@@ -34,7 +37,6 @@ module.exports = {
             res.json(foundUser);
           } else {
             res.sendStatus(401);
-            // res.send(401);
           }
         })
         .fail(function (error) {

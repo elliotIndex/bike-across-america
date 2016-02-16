@@ -17,9 +17,18 @@ var UserSchema = new mongoose.Schema({
 });
 
 UserSchema.methods.addMiles = function (miles) {
-  this.totalMiles += miles;
-  this.save();
-  return this;
+  var user = this;
+  return Q.Promise(function (resolve, reject) {
+    user.totalMiles += miles;
+    user.americaCrossings = Math.floor(user.totalMiles / AMERICA_WIDTH);
+    user.save( function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(user);
+      }
+    });
+  })
 };
 
 UserSchema.methods.comparePasswords = function (candidatePassword) {
@@ -38,9 +47,6 @@ UserSchema.methods.comparePasswords = function (candidatePassword) {
 UserSchema.pre('save', function (next) {
   var user = this;
 
-  // update number of crossings
-  user.americaCrossings = Math.floor(user.totalMiles / AMERICA_WIDTH);
-  
   // only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) {
     return next();
