@@ -14,13 +14,12 @@ angular.module('bikeAcrossAmerica.profile', ['bikeAcrossAmerica.auth'])
   $scope.signout = function () {
     Auth.signout();
   };
-  
+
   $scope.update = function () {
     var newProperties = {};
     for (var property in $scope.newInfo) {
-      if( $scope.newInfo[property].length ) {
-        newProperties[property] = $scope.newInfo[property];
-      }
+      newProperties[property] = $scope.newInfo[property];
+      $scope.newInfo[property] = '';
     }
 
     Profile.updateUser(newProperties, $scope.user.username)
