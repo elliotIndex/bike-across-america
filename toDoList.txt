@@ -6,6 +6,10 @@ add distance across country \,
 add warning on incorrect username/password ~~~
 add profile page and ability to change info \,
 ability to have riding group \,
-add user to own riding group
+add user to own riding group \,
 rank against other riders
 search for other riders based on riding goals
+request user info after sign in
+
+add space to bottom of riding stats
+make sign-up / sign-in look similar
