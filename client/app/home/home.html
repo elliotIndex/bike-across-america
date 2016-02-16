@@ -6,7 +6,7 @@
   <h3>Riding Group</h3>
   <div class="ridingGroup">
     <div class="rider"
-        ng-repeat="rider in user.ridingGroup">
+        ng-repeat="rider in user.ridingGroup | orderBy:'-milesSince' ">
       <div class="info">
         <!-- <div class="rider"> {{ rider }} </div> -->
         <div class="username"> {{ rider.username }}, {{ rider.milesSince }} </div>
@@ -18,7 +18,7 @@
     <input type="text" ng-model="data.newRider" placeholder="username">
     <button class="waves-effect waves-light btn">Add</button>
   </form>
-  <h3>Riding Stats</h3>
+  <h3>Your Riding Stats</h3>
   <div>Total Miles Ridden: {{ user.totalMiles }}</div>
   <div>America Crossings: {{ user.americaCrossings }}</div>
   <div>Progress in Current Crossing:

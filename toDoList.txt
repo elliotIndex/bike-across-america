@@ -7,9 +7,9 @@ add warning on incorrect username/password ~~~
 add profile page and ability to change info \,
 ability to have riding group \,
 add user to own riding group \,
-rank against other riders
+add space to bottom of riding stats \,
+make sign-up / sign-in look similar \,
+rank against other riders \,
+show ranking (1st, 2nd, 3rd ... )
 search for other riders based on riding goals
 request user info after sign in
-
-add space to bottom of riding stats
-make sign-up / sign-in look similar
