@@ -2,6 +2,7 @@ angular.module('bikeAcrossAmerica', [
   'bikeAcrossAmerica.services',
   'bikeAcrossAmerica.auth',
   'bikeAcrossAmerica.home',
+  'bikeAcrossAmerica.profile',
   'ngRoute'
 ])
 .config(function ($routeProvider, $httpProvider) {

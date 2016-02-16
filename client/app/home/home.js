@@ -4,7 +4,7 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
   $scope.data = {};
   $scope.AMERICA_WIDTH = 2680; // miles
 
-  var updateUserInfo = function () {
+  var getUserInfo = function () {
     Auth.getUser()
     .then(function (user) {
       $scope.user = user;
@@ -12,14 +12,10 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
     });
   };
 
-  $scope.navToProfile = function () {
-    
-  }
-
   $scope.addMiles = function () {
     Home.addMiles($scope.data.addedMiles, { username: $scope.user.username })
     .then(function(user) {
-      updateUserInfo();
+      getUserInfo();
     });
     $scope.data.addedMiles = '';
   }
@@ -28,5 +24,5 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
     Auth.signout();
   }
 
-  updateUserInfo();
+  getUserInfo();
 });

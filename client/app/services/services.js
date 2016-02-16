@@ -2,16 +2,6 @@ angular.module('bikeAcrossAmerica.services', [])
 
 .factory('Home', function ($http) {
 
-  // var getMiles = function () {
-  //   return $http({
-  //     method: 'GET',
-  //     url: '/api/users/miles'
-  //   })
-  //   .then(function (resp) {
-  //     return resp.data;
-  //   });
-  // };
-
   var addMiles = function (miles, user) {
     return $http({
       method: 'POST',
