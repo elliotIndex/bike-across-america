@@ -25,13 +25,30 @@ var applyToUser = function (user, success, failure, next) {
     });
 };
 
+var updatePartnersMiles = function (username) {
+  return applyToUser(username, function(user) {
+    user.ridingGroup.forEach(function(partner) {
+      findUser({username: partner.username})
+      .then(function(dbPartner) {
+        console.log(partner);
+        partner.milesSince = dbPartner.totalMiles - partner.startMiles;
+      });
+    });
+    return user;
+  });
+};
+
 module.exports = {
   addRidingPartner: function(req, res, next) {
     applyToUser(req.body.newRider,
       function (partner) {
         applyToUser(req.body.user.username,
           function (currentUser) {
-            currentUser.addRidingPartner(partner.username)
+            currentUser.addRidingPartner({
+              username: partner.username,
+              startMiles: partner.totalMiles,
+              milesSince: 0
+            })
             .then(function (user) {
               res.json(user);
             });
@@ -56,7 +73,12 @@ module.exports = {
     } else {
       var user = jwt.decode(token, 'secret');
       applyToUser(user.username,
-        function (user) { res.json(user); },
+        function (user) {
+          updatePartnersMiles(user.username)
+          .then(function(user) {
+            res.json(user);
+          });
+        },
         function (user) { res.sendStatus(401); },
         next);
     }

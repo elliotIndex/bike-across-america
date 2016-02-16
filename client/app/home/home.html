@@ -3,23 +3,13 @@
   <h2><a href="#/profile">{{ user.username }}</a></h2>
   <p><button class="waves-effect waves-light btn"
              ng-click="signout()">Signout </button></p>
-  <div>Total Miles Ridden: {{ user.totalMiles }}</div><br>
-  <div>America Crossings: {{ user.americaCrossings }}</div><br>
-  <div>Progress in Current Crossing:
-    {{ data.progress }} / {{ AMERICA_WIDTH }}<br>
-  </div>
-  <div>Add Ride</div><br>
-  <form name="enterMilesForm" ng-submit='addMiles()'>
-    <input type="number" ng-model="data.addedMiles" placeholder="miles">
-    <button class="waves-effect waves-light btn">Add</button>
-  </form><br>
-  <div>Riding Group</div><br>
+  <h3>Riding Group</h3>
   <div class="ridingGroup">
     <div class="rider"
         ng-repeat="rider in user.ridingGroup">
       <div class="info">
-        <div class="rider"> {{ rider }} </div>
-        <div class="username"> {{ rider.username }} </div>
+        <!-- <div class="rider"> {{ rider }} </div> -->
+        <div class="username"> {{ rider.username }}, {{ rider.milesSince }} </div>
         <div class="miles"> {{ rider.totalMiles }} </div>
       </div>
     </div>
@@ -28,5 +18,15 @@
     <input type="text" ng-model="data.newRider" placeholder="username">
     <button class="waves-effect waves-light btn">Add</button>
   </form>
-  <br>
+  <h3>Riding Stats</h3>
+  <div>Total Miles Ridden: {{ user.totalMiles }}</div>
+  <div>America Crossings: {{ user.americaCrossings }}</div>
+  <div>Progress in Current Crossing:
+    {{ data.progress }} / {{ AMERICA_WIDTH }}
+  </div>
+  <div>Add Ride</div>
+  <form name="enterMilesForm" ng-submit='addMiles()'>
+    <input type="number" ng-model="data.addedMiles" placeholder="miles">
+    <button class="waves-effect waves-light btn">Add</button>
+  </form>
 </div>
