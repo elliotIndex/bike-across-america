@@ -8,8 +8,12 @@
   </div>
   <div>Add Ride</div><br>
   <form name="enterMilesForm" ng-submit='addMiles()'>
-    <input type="number" ng-model="data.addedMiles">
-    Miles
+    <input type="number" ng-model="data.addedMiles" placeholder="miles">
+    <button>Add</button>
+  </form><br>
+  <div>Add Rider to Riding Group</div><br>
+  <form name="enterRiderForm" ng-submit='addRider()'>
+    <input type="text" ng-model="data.newRider" placeholder="username">
     <button>Add</button>
   </form>
   <br>
