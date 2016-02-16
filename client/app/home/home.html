@@ -4,6 +4,7 @@
   <p><button class="waves-effect waves-light btn"
              ng-click="signout()">Signout </button></p>
   <h3>Riding Group</h3>
+
   <table class="centered striped" style="width:60%">
     <thead>
       <tr>
@@ -18,16 +19,8 @@
       <td>{{ rider.username }}</td>
       <td>{{ rider.milesSince }}</td>
     </tr>
-  </table>
-  <!-- <div class="ridingGroup">
-    <div class="rider"
-        ng-repeat="rider in user.ridingGroup | orderBy:'-milesSince' ">
-      <div class="info">
-        <div > {{ placeString($index) }}: {{ rider.username }}, {{ rider.milesSince }} </div>
+  </table><br>
 
-      </div>
-    </div>
-  </div> -->
   <form name="enterRiderForm" ng-submit='addRider()'>
     <input type="text" ng-model="data.newRider" placeholder="username">
     <button class="waves-effect waves-light btn">Add Riding Partner</button>
@@ -37,8 +30,7 @@
   <div>America Crossings: {{ user.americaCrossings }}</div>
   <div>Progress in Current Crossing:
     {{ data.progress }} / {{ AMERICA_WIDTH }}
-  </div>
-  <div>Add Ride</div>
+  </div><br>
   <form name="enterMilesForm" ng-submit='addMiles()'>
     <input type="number" ng-model="data.addedMiles" placeholder="miles">
     <button class="waves-effect waves-light btn">Add Ride</button>
