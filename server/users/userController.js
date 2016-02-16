@@ -4,19 +4,24 @@ var  jwt = require('jwt-simple');
 
 // Promisify a few mongoose methods with the `q` promise library
 var findUser = Q.nbind(User.findOne, User);
+var findUsers = Q.nbind(User.find, User);
 var createUser = Q.nbind(User.create, User);
 
 module.exports = {
 
   addRidingPartner: function (req, res, next) {
-    findUser(req.body.user)
-      .then(function (user) {
-        if (!user) {
-          next(new Error('User does not exist'));
+    console.log('req.body: ', req.body);
+    findUsers({$or: [
+      req.body.user,
+      { username: req.body.newRider }
+    ]})
+      .then(function (users) {
+        if (users.length < 2) {
+          next(new Error('Rider does not exist'));
         } else {
-          user.addRidingPartner(req.body.newRider)
-          .then(function(user) {
-            res.json(user);
+          users.addRidingPartner(req.body.newRider)
+          .then(function(users) {
+            res.json(users);
           });
         }
       })

@@ -25,7 +25,7 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
     .then(function(user) {
       getUserInfo();
     });
-    $scope.data.addedMiles = '';
+    $scope.data.newRider = '';
   };
 
   $scope.signout = function () {
