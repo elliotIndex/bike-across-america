@@ -6,4 +6,6 @@ add distance across country \,
 add warning on incorrect username/password ~~~
 add profile page and ability to change info \,
 ability to have riding group \,
+add user to own riding group
 rank against other riders
+search for other riders based on riding goals
