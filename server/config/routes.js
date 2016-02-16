@@ -1,6 +1,5 @@
 // var linksController = require('../links/linkController.js');
 var userController = require('../users/userController.js');
-var testController = require('../test/testController.js');
 var helpers = require('./helpers.js'); // our custom middleware
 
 module.exports = function (app, express) {
@@ -15,7 +14,6 @@ module.exports = function (app, express) {
   // app.get('/api/links/', linksController.allLinks);
   app.post('/api/users/miles', userController.addMiles);
   app.get('/api/users/getUser', userController.getUser);
-  app.get('/', testController.testFunc);
   // If a request is sent somewhere other than the routes above,
   // send it through our custom error handler
   app.use(helpers.errorLogger);
