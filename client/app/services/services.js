@@ -36,7 +36,21 @@ angular.module('bikeAcrossAmerica.services', [])
     });
   };
 
+  var addRider = function (newRider, user) {
+    return $http({
+      method: 'PUT',
+      url: '/api/users/ridingGroup',
+      data: {
+        newRider: newRider,
+        user: user
+      }
+    }).then(function (user) {
+      return user;
+    });
+  };
+
   return {
+    addRider: addRider,
     addMiles: addMiles
   };
 })

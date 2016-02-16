@@ -18,11 +18,19 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
       getUserInfo();
     });
     $scope.data.addedMiles = '';
-  }
+  };
+
+  $scope.addRider = function () {
+    Home.addRider($scope.data.newRider, { username: $scope.user.username })
+    .then(function(user) {
+      getUserInfo();
+    });
+    $scope.data.addedMiles = '';
+  };
 
   $scope.signout = function () {
     Auth.signout();
-  }
+  };
 
   getUserInfo();
 });

@@ -1,6 +1,7 @@
 <div id='home'>
   <h1>{{ user.firstName }} {{ user.lastName }}</h1>
   <h2><a href="#/profile">{{ user.username }}</a></h2>
+  <p><button ng-click="signout()">Signout </button></p>
   <div>Total Miles Ridden: {{ user.totalMiles }}</div><br>
   <div>America Crossings: {{ user.americaCrossings }}</div><br>
   <div>Progress in Current Crossing:
@@ -11,11 +12,19 @@
     <input type="number" ng-model="data.addedMiles" placeholder="miles">
     <button>Add</button>
   </form><br>
-  <div>Add Rider to Riding Group</div><br>
+  <div>Riding Group</div><br>
+  <div class="ridingGroup">
+    <div class="rider"
+        ng-repeat="rider in user.ridingGroup">
+      <div class="info">
+        <div class="username"> {{ rider.username }} </div>
+        <div class="miles"> {{ rider.totalMiles }} </div>
+      </div>
+    </div>
+  </div>
   <form name="enterRiderForm" ng-submit='addRider()'>
     <input type="text" ng-model="data.newRider" placeholder="username">
     <button>Add</button>
   </form>
   <br>
-  <button ng-click="signout()">Signout</button>
 </div>

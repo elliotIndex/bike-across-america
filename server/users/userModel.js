@@ -32,6 +32,20 @@ UserSchema.methods.addMiles = function (miles) {
   })
 };
 
+UserSchema.methods.addRidingPartner = function (newRider) {
+  var user = this;
+  return Q.Promise(function (resolve, reject) {
+    user.ridingGroup.addToSet(newRider);
+    user.save( function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(user);
+      }
+    });
+  })
+};
+
 UserSchema.methods.updateInfo = function (newInfo) {
   var user = this;
   return Q.Promise(function (resolve, reject) {

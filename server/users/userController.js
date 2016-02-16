@@ -8,6 +8,23 @@ var createUser = Q.nbind(User.create, User);
 
 module.exports = {
 
+  addRidingPartner: function (req, res, next) {
+    findUser(req.body.user)
+      .then(function (user) {
+        if (!user) {
+          next(new Error('User does not exist'));
+        } else {
+          user.addRidingPartner(req.body.newRider)
+          .then(function(user) {
+            res.json(user);
+          });
+        }
+      })
+      .fail(function (error) {
+        next(error);
+      });
+  },
+
   addMiles: function (req, res, next) {
     findUser(req.body.user)
       .then(function (user) {
