@@ -20,7 +20,7 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
     } else if (place === 2) {
       return '3rd';
     } else {
-      return place + 'th';
+      return (place+1) + 'th';
     }
   }
 
