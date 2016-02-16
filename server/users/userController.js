@@ -8,7 +8,9 @@ var findUsers = Q.nbind(User.find, User);
 var createUser = Q.nbind(User.create, User);
 
 var applyToUser = function (user, success, failure, next) {
-  // user must be in format { username: "username" }
+  if (typeof(user) === 'string') {
+    user = {username: user};
+  }
   return findUser(user)
     .then(function (user) {
       if (!user) {
@@ -17,14 +19,22 @@ var applyToUser = function (user, success, failure, next) {
         }
         next(new Error('User already exist!'));
       } else {
-        success(user)
+        // success(user)
         return user;
       }
     });
 };
 
 module.exports = {
-
+  // addRidingPartner: function(req, res, next) {
+  //   applyToUser(req.body.newRider,
+  //     function (partner) {
+  //       applyToUser(user.username,
+  //         function (currentUser) {
+  //
+  //         }, null, next);
+  //     }), null, next);
+  // }
   addRidingPartner: function (req, res, next) {
     findUsers({$or: [
       req.body.user,
@@ -54,6 +64,9 @@ module.exports = {
       function (user) {
         user.addMiles(req.body.miles)
       }, null, next)
+    .then(function (user) {
+      user.addMiles(req.body.miles)
+    })
     .then(function(user) {
       res.json(user);
     });
@@ -65,10 +78,11 @@ module.exports = {
       next(new Error('No token'));
     } else {
       var user = jwt.decode(token, 'secret');
-      applyToUser({username: user.username},
+      applyToUser(user.username,
         function (user) { res.json(user); },
         function (user) { res.sendStatus(401); },
-        next);
+        next)
+      .then(function (user) { res.json(user); });
     }
   },
 
