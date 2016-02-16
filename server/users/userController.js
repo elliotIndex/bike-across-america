@@ -35,7 +35,7 @@ var updatePartnersMiles = function (username, next) {
     var milagePromises = user.ridingGroup.map(function(partner) {
       return findUser({username: partner.username})
       .then(function(dbPartner) {
-        newMilage[partner.username] = dbPartner.totalMiles - partner.startMiles;
+        newMilage[partner.username] = dbPartner.totalMiles - partner.partnerStartMiles + partner.userStartMiles;
         return newMilage;
       });
     });
@@ -62,7 +62,8 @@ module.exports = {
           function (currentUser) {
             currentUser.addRidingPartner({
               username: partner.username,
-              startMiles: partner.totalMiles,
+              partnerStartMiles: partner.totalMiles,
+              userStartMiles: currentUser.totalMiles,
               milesSince: 0
             })
             .then(function (user) {
@@ -160,7 +161,8 @@ module.exports = {
           .then(function(user) {
             return user.addRidingPartner({
               username: user.username,
-              startMiles: user.totalMiles,
+              partnerStartMiles: user.totalMiles,
+              userStartMiles: user.totalMiles,
               milesSince: 0
             });
           });
