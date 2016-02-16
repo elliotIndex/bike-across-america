@@ -10,9 +10,11 @@ angular.module('bikeAcrossAmerica.profile', ['bikeAcrossAmerica.auth'])
       $scope.user = user;
     });
   };
+
   $scope.signout = function () {
     Auth.signout();
-  }
+  };
+  
   $scope.update = function () {
     var newProperties = {};
     for (var property in $scope.newInfo) {

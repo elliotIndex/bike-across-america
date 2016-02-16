@@ -1,8 +1,6 @@
 <div id='profile'>
+  <h1>{{ user.username }}</h1>
   <form ng-submit='update()'>
-    <p>Username: {{ user.username }}
-      <input type="text" ng-model="newInfo.username" placeholder="username">
-    </p>
     <p>First Name: {{ user.firstName }}
       <input type="text" ng-model="newInfo.firstName" placeholder="First Name">
     </p>
