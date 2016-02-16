@@ -19,6 +19,11 @@ angular.module('bikeAcrossAmerica', [
       controller: 'HomeController',
       authenticate: true
     })
+    .when('/profile', {
+      templateUrl: 'app/profile/profile.html',
+      controller: 'ProfileController',
+      authenticate: true
+    })
     .otherwise({
       redirectTo: '/home'
     })
