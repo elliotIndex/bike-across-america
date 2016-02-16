@@ -5,5 +5,5 @@ add miles \,
 add distance across country \,
 add warning on incorrect username/password ~~~
 add profile page and ability to change info \,
-ability to have riding group
+ability to have riding group \,
 rank against other riders
