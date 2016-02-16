@@ -10,6 +10,8 @@ angular.module('bikeAcrossAmerica.auth', [])
         $location.path('/links');
       })
       .catch(function (error) {
+        $scope.user.username = '';
+        $scope.user.password = '';
         console.error(error);
       });
   };
