@@ -4,19 +4,33 @@
   <p><button class="waves-effect waves-light btn"
              ng-click="signout()">Signout </button></p>
   <h3>Riding Group</h3>
-  <div class="ridingGroup">
+  <table class="centered striped" style="width:60%">
+    <thead>
+      <tr>
+          <th data-field="id">Place</th>
+          <th data-field="name">Username</th>
+          <th data-field="price">Miles</th>
+      </tr>
+    </thead>
+    <tr class="rider"
+        ng-repeat="rider in user.ridingGroup | orderBy:'-milesSince' ">
+      <td>{{ placeString($index) }}</td>
+      <td>{{ rider.username }}</td>
+      <td>{{ rider.milesSince }}</td>
+    </tr>
+  </table>
+  <!-- <div class="ridingGroup">
     <div class="rider"
         ng-repeat="rider in user.ridingGroup | orderBy:'-milesSince' ">
       <div class="info">
-        <!-- <div class="rider"> {{ rider }} </div> -->
-        <div class="username"> {{ rider.username }}, {{ rider.milesSince }} </div>
-        <div class="miles"> {{ rider.totalMiles }} </div>
+        <div > {{ placeString($index) }}: {{ rider.username }}, {{ rider.milesSince }} </div>
+
       </div>
     </div>
-  </div>
+  </div> -->
   <form name="enterRiderForm" ng-submit='addRider()'>
     <input type="text" ng-model="data.newRider" placeholder="username">
-    <button class="waves-effect waves-light btn">Add</button>
+    <button class="waves-effect waves-light btn">Add Riding Partner</button>
   </form>
   <h3>Your Riding Stats</h3>
   <div>Total Miles Ridden: {{ user.totalMiles }}</div>
@@ -27,6 +41,6 @@
   <div>Add Ride</div>
   <form name="enterMilesForm" ng-submit='addMiles()'>
     <input type="number" ng-model="data.addedMiles" placeholder="miles">
-    <button class="waves-effect waves-light btn">Add</button>
+    <button class="waves-effect waves-light btn">Add Ride</button>
   </form><br>
 </div>
