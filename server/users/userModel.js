@@ -46,6 +46,22 @@ UserSchema.methods.addRidingPartner = function (newRider) {
   })
 };
 
+UserSchema.methods.updatePartnersMiles = function (newMilages) {
+  var user = this;
+  return Q.Promise(function (resolve, reject) {
+    user.ridingGroup.forEach(function(partner) {
+      partner.milesSince = newMilages[partner.username];
+    });
+    user.save( function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(user);
+      }
+    });
+  })
+};
+
 UserSchema.methods.updateInfo = function (newInfo) {
   var user = this;
   return Q.Promise(function (resolve, reject) {

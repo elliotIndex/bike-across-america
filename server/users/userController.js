@@ -19,23 +19,35 @@ var applyToUser = function (user, success, failure, next) {
         }
         next();
       } else {
-        success(user)
-        return user;
+        var updatedUser = success(user)
+        if (updatedUser) {
+          return updatedUser;
+        } else {
+          return user;
+        }
       }
     });
 };
 
-var updatePartnersMiles = function (username) {
+var updatePartnersMiles = function (username, next) {
+  var newMilage = {};
   return applyToUser(username, function(user) {
-    user.ridingGroup.forEach(function(partner) {
-      findUser({username: partner.username})
+    var milagePromises = user.ridingGroup.map(function(partner) {
+      return findUser({username: partner.username})
       .then(function(dbPartner) {
-        console.log(partner);
-        partner.milesSince = dbPartner.totalMiles - partner.startMiles;
+        newMilage[partner.username] = dbPartner.totalMiles - partner.startMiles;
+        return newMilage;
       });
     });
-    return user;
-  });
+
+    return milagePromises[milagePromises.length-1]
+    .then(function(milages) {
+      return user.updatePartnersMiles(milages)
+      .then(function(user) {
+        return user;
+      })
+    });
+  }, null, next);
 };
 
 module.exports = {
@@ -74,7 +86,7 @@ module.exports = {
       var user = jwt.decode(token, 'secret');
       applyToUser(user.username,
         function (user) {
-          updatePartnersMiles(user.username)
+          updatePartnersMiles(user.username, next)
           .then(function(user) {
             res.json(user);
           });
