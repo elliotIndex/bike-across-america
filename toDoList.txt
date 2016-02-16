@@ -11,6 +11,6 @@ add space to bottom of riding stats \,
 make sign-up / sign-in look similar \,
 rank against other riders \,
 show ranking (1st, 2nd, 3rd ... ) \,
-fix milesSince system
+fix milesSince system \,
 search for other riders based on riding goals
 request user info after sign in
