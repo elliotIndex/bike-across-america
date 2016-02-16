@@ -7,11 +7,14 @@ var findUser = Q.nbind(User.findOne, User);
 var findUsers = Q.nbind(User.find, User);
 var createUser = Q.nbind(User.create, User);
 
-var applyToUser = function (user, success, next) {
+var applyToUser = function (user, success, failure, next) {
   // user must be in format { username: "username" }
   return findUser(user)
     .then(function (user) {
       if (!user) {
+        if (failure) {
+          failure();
+        }
         next(new Error('User already exist!'));
       } else {
         success(user)
@@ -23,7 +26,6 @@ var applyToUser = function (user, success, next) {
 module.exports = {
 
   addRidingPartner: function (req, res, next) {
-    console.log('req.body: ', req.body);
     findUsers({$or: [
       req.body.user,
       { username: req.body.newRider }
@@ -51,24 +53,10 @@ module.exports = {
     applyToUser(req.body.user,
       function (user) {
         user.addMiles(req.body.miles)
-      }, next)
+      }, null, next)
     .then(function(user) {
       res.json(user);
     });
-    // findUser(req.body.user)
-    //   .then(function (user) {
-    //     if (!user) {
-    //       next(new Error('User does not exist'));
-    //     } else {
-    //       user.addMiles(req.body.miles)
-    //       .then(function(user) {
-    //         res.json(user);
-    //       });
-    //     }
-    //   })
-    //   .fail(function (error) {
-    //     next(error);
-    //   });
   },
 
   getUser: function (req, res, next) {
@@ -77,17 +65,10 @@ module.exports = {
       next(new Error('No token'));
     } else {
       var user = jwt.decode(token, 'secret');
-      findUser({username: user.username})
-        .then(function (foundUser) {
-          if (foundUser) {
-            res.json(foundUser);
-          } else {
-            res.sendStatus(401);
-          }
-        })
-        .fail(function (error) {
-          next(error);
-        });
+      applyToUser({username: user.username},
+        function (user) { res.json(user); },
+        function (user) { res.sendStatus(401); },
+        next);
     }
   },
 
