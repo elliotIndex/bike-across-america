@@ -31,6 +31,22 @@ UserSchema.methods.addMiles = function (miles) {
   })
 };
 
+UserSchema.methods.updateInfo = function (newInfo) {
+  var user = this;
+  return Q.Promise(function (resolve, reject) {
+    for (var property in newInfo) {
+      user[property] = newInfo[property];
+    }
+    user.save( function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(user);
+      }
+    });
+  })
+};
+
 UserSchema.methods.comparePasswords = function (candidatePassword) {
   var savedPassword = this.password;
   return Q.Promise(function (resolve, reject) {

@@ -1,5 +1,26 @@
 angular.module('bikeAcrossAmerica.services', [])
 
+.factory('Profile', function ($http) {
+
+  var updateUser = function (newInfo, previousUsername) {
+    return $http({
+      method: 'PUT',
+      url: '/api/users/profile',
+      data: {
+        newInfo: newInfo,
+        user: {
+          username: previousUsername
+        }
+      }
+    }).then(function (user) {
+      return user;
+    });
+  };
+
+  return {
+    updateUser: updateUser
+  };
+})
 .factory('Home', function ($http) {
 
   var addMiles = function (miles, user) {

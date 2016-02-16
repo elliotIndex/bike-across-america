@@ -45,6 +45,23 @@ module.exports = {
     }
   },
 
+  setUser: function (req, res, next) {
+    findUser(req.body.user)
+      .then(function (user) {
+        if (!user) {
+          next(new Error('User does not exist'));
+        } else {
+          user.updateInfo(req.body.newInfo)
+          .then(function(user) {
+            res.json(user);
+          });
+        }
+      })
+      .fail(function (error) {
+        next(error);
+      });
+  },
+
   signin: function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
