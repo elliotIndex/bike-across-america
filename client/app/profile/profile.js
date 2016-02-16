@@ -10,7 +10,9 @@ angular.module('bikeAcrossAmerica.profile', ['bikeAcrossAmerica.auth'])
       $scope.user = user;
     });
   };
-
+  $scope.signout = function () {
+    Auth.signout();
+  }
   $scope.update = function () {
     var newProperties = {};
     for (var property in $scope.newInfo) {
@@ -22,6 +24,7 @@ angular.module('bikeAcrossAmerica.profile', ['bikeAcrossAmerica.auth'])
     Profile.updateUser(newProperties, $scope.user.username)
       .then( function(user) {
         $scope.user = user;
+        getUserInfo();
       });
   };
 
