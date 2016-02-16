@@ -8,6 +8,7 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
     Auth.getUser()
     .then(function (user) {
       $scope.user = user;
+      $scope.data.progress = $scope.user.totalMiles % $scope.AMERICA_WIDTH;
     });
   };
 

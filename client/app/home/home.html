@@ -3,7 +3,9 @@
   <h2>{{ user.username }}</h2>
   <div>Total Miles Ridden: {{ user.totalMiles }}</div><br>
   <div>America Crossings: {{ user.americaCrossings }}</div><br>
-  <div>Progress in Current Crossing: {{ user.totalMiles % AMERICA_WIDTH }} / {{ AMERICA_WIDTH }}</div><br>
+  <div>Progress in Current Crossing:
+    {{ data.progress }} / {{ AMERICA_WIDTH }}</div><br>
+  </div>
   <div>Add Ride</div><br>
   <form name="enterMilesForm" ng-submit='addMiles()'>
     <input type="number" ng-model="data.addedMiles" min="0" max="500">
