@@ -14,6 +14,7 @@ var UserSchema = new mongoose.Schema({
   totalMiles: { type: Number, default: 0 },
   americaCrossings: { type: Number, default: 0 },
   weeklyMilageGoal: { type: Number, default: 50 },
+  ridingGroup: Array
 });
 
 UserSchema.methods.addMiles = function (miles) {
