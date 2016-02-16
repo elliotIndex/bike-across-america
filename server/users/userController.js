@@ -19,7 +19,7 @@ var applyToUser = function (user, success, failure, next) {
         }
         next(new Error('User already exist!'));
       } else {
-        // success(user)
+        success(user)
         return user;
       }
     });
@@ -33,7 +33,7 @@ module.exports = {
   //         function (currentUser) {
   //
   //         }, null, next);
-  //     }), null, next);
+  //     }, null, next);
   // }
   addRidingPartner: function (req, res, next) {
     findUsers({$or: [
@@ -64,9 +64,6 @@ module.exports = {
       function (user) {
         user.addMiles(req.body.miles)
       }, null, next)
-    .then(function (user) {
-      user.addMiles(req.body.miles)
-    })
     .then(function(user) {
       res.json(user);
     });
@@ -81,8 +78,7 @@ module.exports = {
       applyToUser(user.username,
         function (user) { res.json(user); },
         function (user) { res.sendStatus(401); },
-        next)
-      .then(function (user) { res.json(user); });
+        next);
     }
   },
 
