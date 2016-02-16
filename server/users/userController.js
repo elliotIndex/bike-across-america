@@ -40,13 +40,17 @@ var updatePartnersMiles = function (username, next) {
       });
     });
 
-    return milagePromises[milagePromises.length-1]
-    .then(function(milages) {
-      return user.updatePartnersMiles(milages)
-      .then(function(user) {
-        return user;
-      })
-    });
+    if (milagePromises.length) {
+      return milagePromises[milagePromises.length-1]
+      .then(function(milages) {
+        return user.updatePartnersMiles(milages)
+        .then(function(user) {
+          return user;
+        })
+      });
+    } else {
+      return user;
+    }
   }, null, next);
 };
 
