@@ -1,7 +1,9 @@
 angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
 
 .controller('HomeController', function ($scope, Home, Auth) {
-  $scope.data = {};
+  $scope.data = {
+    addRiderFormShowing: false
+  };
   $scope.AMERICA_WIDTH = 2680; // miles
 
   var getUserInfo = function () {
@@ -10,6 +12,10 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
       $scope.user = user;
       $scope.data.progress = $scope.user.totalMiles % $scope.AMERICA_WIDTH;
     });
+  };
+
+  $scope.toggleUsernameForm = function () {
+    $('#newPartnerForm').toggle();
   };
 
   $scope.placeString = function (place) {
@@ -45,4 +51,5 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
   };
 
   getUserInfo();
+  $('#newPartnerForm').css('display', 'none');
 });

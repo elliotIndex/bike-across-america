@@ -20,8 +20,9 @@
       <td>{{ rider.milesSince }}</td>
     </tr>
   </table><br>
-
-  <form name="enterRiderForm" ng-submit='addRider()'>
+  <button class="waves-effect waves-light btn"
+          ng-click="toggleUsernameForm()">Add Riding Partner by Username</button>
+  <form id="newPartnerForm" name="enterRiderForm" ng-submit='addRider()'>
     <input type="text" ng-model="data.newRider" placeholder="username">
     <button class="waves-effect waves-light btn">Add Riding Partner</button>
   </form>
