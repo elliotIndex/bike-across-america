@@ -3,8 +3,10 @@
   <h5><a href="#/profile">{{ user.username }}</a></h5>
   <p><button class="waves-effect waves-light btn"
              ng-click="signout()">Signout </button></p>
-  <h3>Riding Group</h3>
 
+
+ <!-- Riding Group -->
+  <h3>Riding Group</h3>
   <table class="centered striped" style="width:60%">
     <thead>
       <tr>
@@ -24,16 +26,36 @@
           ng-click="toggleUsernameForm()">Add Riding Partner by Username</button>
   <form id="newPartnerForm" name="enterRiderForm" ng-submit='addRider()'>
     <input type="text" ng-model="data.newRider" placeholder="username">
-    <button class="waves-effect waves-light btn">Add Riding Partner</button>
+    <button class="waves-effect waves-light blue darken-2 btn">Add Riding Partner</button>
   </form>
+
+  <!-- Find Riding Partners -->
+  <button class="waves-effect waves-light green btn"
+          ng-click="findRidingPartners()">Find Riding Partners</button>
+  <table id="potentialPartners" class="centered highlight" style="width:60%">
+    <thead>
+      <tr>
+          <th data-field="name">Username</th>
+          <th data-field="price">Weekly Milage Goal</th>
+      </tr>
+    </thead>
+    <tr class="rider"
+        ng-repeat="rider in data.potentialPartners | orderBy:'weeklyMilageGoal' ">
+      <td>{{ rider.username }}</td>
+      <td>{{ rider.weeklyMilageGoal }}</td>
+    </tr>
+  </table><br>
+
+  <!-- Personal Riding Stats -->
+
   <h3>Your Riding Stats</h3>
-  <div>Total Miles Ridden: {{ user.totalMiles }}</div>
+  <div>Total Miles Ridden: {{ user.totalMiles }} miles</div>
   <div>America Crossings: {{ user.americaCrossings }}</div>
   <div>Progress in Current Crossing:
-    {{ data.progress }} / {{ AMERICA_WIDTH }}
+    {{ data.progress }} / {{ AMERICA_WIDTH }} miles
   </div><br>
   <form name="enterMilesForm" ng-submit='addMiles()'>
     <input type="number" ng-model="data.addedMiles" placeholder="miles">
-    <button class="waves-effect waves-light btn">Add Ride</button>
+    <button class="waves-effect waves-light blue darken-2 btn">Add Ride</button>
   </form><br>
 </div>

@@ -73,6 +73,16 @@ module.exports = {
       }, null, next);
   },
 
+  findRidingPartners: function(req, res, next) {
+    var max = req.body.weeklyMilageGoal + 20;
+    var min = req.body.weeklyMilageGoal - 20;
+    return findUsers({weeklyMilageGoal: {$gt: min, $lt: max}})
+    .then(function(potentialPartners) {
+      res.json(potentialPartners);
+    });
+
+  },
+
   addMiles: function (req, res, next) {
     applyToUser(req.body.user,
       function (user) {

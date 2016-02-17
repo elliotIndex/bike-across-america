@@ -4,10 +4,13 @@ var helpers = require('./helpers.js'); // our custom middleware
 
 module.exports = function (app, express) {
 
+  app.get('/api/users/getUser', userController.getUser);
+  app.get('/api/users/find/partners', userController.findRidingPartners);
+
   app.post('/api/users/signin', userController.signin);
   app.post('/api/users/signup', userController.signup);
   app.post('/api/users/miles', userController.addMiles);
-  app.get('/api/users/getUser', userController.getUser);
+
   app.put('/api/users/profile', userController.setUser);
   app.put('/api/users/ridingGroup', userController.addRidingPartner);
 
