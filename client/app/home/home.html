@@ -22,16 +22,15 @@
       <td>{{ rider.milesSince }}</td>
     </tr>
   </table><br>
+
+<!-- Add Partners Buttons -->
   <button class="waves-effect waves-light btn"
           ng-click="toggleUsernameForm()">Add Riding Partner by Username</button>
-  <form id="newPartnerForm" name="enterRiderForm" ng-submit='addRider()'>
-    <input type="text" ng-model="data.newRider" placeholder="username">
-    <button class="waves-effect waves-light blue darken-2 btn">Add Riding Partner</button>
-  </form>
-
-  <!-- Find Riding Partners -->
   <button class="waves-effect waves-light green btn"
           ng-click="findRidingPartners()">Find Riding Partners</button>
+
+
+  <!-- Find Riding Partners -->
   <table id="potentialPartners" class="centered highlight" style="width:40%">
     <thead>
       <tr>
@@ -47,6 +46,12 @@
     </tr>
   </table><br>
 
+  <!-- Add by username -->
+  <form id="newPartnerForm" name="enterRiderForm" ng-submit='addRider()'>
+    <input type="text" ng-model="data.newRider" placeholder="username">
+    <button class="waves-effect waves-light blue darken-2 btn">Add Riding Partner</button>
+  </form>
+  
   <!-- Personal Riding Stats -->
 
   <h3>Your Riding Stats</h3>
