@@ -17,7 +17,8 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
   $scope.findRidingPartners = function () {
     Home.findRidingPartners($scope.user.weeklyMilageGoal)
     .then(function(potentialPartners) {
-      scope.data.potentialPartners = potentialPartners;
+      $scope.data.potentialPartners = potentialPartners;
+      return true;
     })
     .then(function() {
       $('#potentialPartners').toggle();
@@ -62,4 +63,5 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
 
   getUserInfo();
   $('#newPartnerForm').css('display', 'none');
+  $('#potentialPartners').css('display', 'none');
 });

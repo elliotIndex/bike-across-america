@@ -25,13 +25,16 @@ angular.module('bikeAcrossAmerica.services', [])
 
   var findRidingPartners = function (weeklyMilageGoal) {
     return $http({
-      method: 'GET',
+      method: 'POST',
       url: '/api/users/find/partners',
-      data: { weeklyMilageGoal: weeklyMilageGoal }
-    }).then(function (potentialPartners) {
-      return potentialPartners;
+      data: {
+        weeklyMilageGoal: weeklyMilageGoal
+       }
+    }).then(function (res) {
+      return res.data;
     });
-  }
+  };
+
   var addMiles = function (miles, user) {
     return $http({
       method: 'POST',
