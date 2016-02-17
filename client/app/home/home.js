@@ -1,4 +1,6 @@
-angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
+angular.module('bikeAcrossAmerica.home', [
+  'bikeAcrossAmerica.auth'
+])
 
 .controller('HomeController', function ($scope, Home, Auth) {
   $scope.data = {
@@ -12,14 +14,6 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
       $scope.user = user;
       $scope.data.progress = $scope.user.totalMiles % $scope.AMERICA_WIDTH;
     });
-  };
-
-  $scope.notInGroup = function (usernameInQueston) {
-      // var a = $scope.user.ridingGroup.reduce(function(agg, rider) {
-      //   return agg || usernameInQueston === rider.username;
-      // }, false);
-      console.log('usernameInQueston: ', usernameInQueston);
-      return false;
   };
 
   $scope.findRidingPartners = function () {
@@ -57,8 +51,9 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
     $scope.data.addedMiles = '';
   };
 
-  $scope.addRider = function () {
-    Home.addRider($scope.data.newRider, { username: $scope.user.username })
+  $scope.addRider = function (newRider) {
+    newRider = newRider || $scope.data.newRider;
+    Home.addRider(newRider, { username: $scope.user.username })
     .then(function(user) {
       getUserInfo();
     });

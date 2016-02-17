@@ -3,9 +3,13 @@ angular.module('bikeAcrossAmerica', [
   'bikeAcrossAmerica.auth',
   'bikeAcrossAmerica.home',
   'bikeAcrossAmerica.profile',
-  'testFilter',
   'ngRoute'
 ])
+.filter('testFilter', function() {
+  return function(username) {
+    console.log(username)
+  };
+})
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
     .when('/signin', {

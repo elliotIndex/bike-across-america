@@ -40,7 +40,8 @@
       </tr>
     </thead>
     <tr class="rider"
-        ng-repeat="rider in data.potentialPartners | filter:notInGroup(rider) | orderBy:'weeklyMilageGoal'">
+        ng-repeat="rider in data.potentialPartners | orderBy:'weeklyMilageGoal'"
+        ng-click="addRider(rider.username)">
       <td>{{ rider.username }}</td>
       <td>{{ rider.weeklyMilageGoal }}</td>
     </tr>
