@@ -32,7 +32,7 @@
   <!-- Find Riding Partners -->
   <button class="waves-effect waves-light green btn"
           ng-click="findRidingPartners()">Find Riding Partners</button>
-  <table id="potentialPartners" class="centered highlight" style="width:60%">
+  <table id="potentialPartners" class="centered highlight" style="width:40%">
     <thead>
       <tr>
           <th data-field="name">Username</th>
@@ -40,7 +40,7 @@
       </tr>
     </thead>
     <tr class="rider"
-        ng-repeat="rider in data.potentialPartners | orderBy:'weeklyMilageGoal' ">
+        ng-repeat="rider in data.potentialPartners | filter:notInGroup(rider) | orderBy:'weeklyMilageGoal'">
       <td>{{ rider.username }}</td>
       <td>{{ rider.weeklyMilageGoal }}</td>
     </tr>

@@ -3,6 +3,7 @@ angular.module('bikeAcrossAmerica', [
   'bikeAcrossAmerica.auth',
   'bikeAcrossAmerica.home',
   'bikeAcrossAmerica.profile',
+  'testFilter',
   'ngRoute'
 ])
 .config(function ($routeProvider, $httpProvider) {

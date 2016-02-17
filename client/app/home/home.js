@@ -14,6 +14,14 @@ angular.module('bikeAcrossAmerica.home', ['bikeAcrossAmerica.auth'])
     });
   };
 
+  $scope.notInGroup = function (usernameInQueston) {
+      // var a = $scope.user.ridingGroup.reduce(function(agg, rider) {
+      //   return agg || usernameInQueston === rider.username;
+      // }, false);
+      console.log('usernameInQueston: ', usernameInQueston);
+      return false;
+  };
+
   $scope.findRidingPartners = function () {
     Home.findRidingPartners($scope.user.weeklyMilageGoal)
     .then(function(potentialPartners) {

@@ -76,7 +76,6 @@ module.exports = {
   findRidingPartners: function(req, res, next) {
     var max = req.body.weeklyMilageGoal + 20;
     var min = req.body.weeklyMilageGoal - 20;
-    console.log('wreck: ', req.body);
     return findUsers({weeklyMilageGoal: {$gt: min, $lt: max}})
     .then(function(potentialPartners) {
       res.json(potentialPartners);
